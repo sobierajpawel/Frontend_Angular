@@ -23,7 +23,7 @@ New-Item -Path 'sub-folderPath' -Type Director
 5. Zainstaluj Angular CLI za pomocą polecenia.
 
 ```ps
-npm install  @angular/cli
+npm install -g  @angular/cli
 ```
 
 6. Sprawdź czy Angular CLI zostało poprawnie zaintalowane globalnie za pomocą polecenia.
