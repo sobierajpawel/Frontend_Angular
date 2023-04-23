@@ -1,0 +1,30 @@
+<h2>Dodaj nowego studenta</h2>
+<!-- Pole do name, email, przycisk -->
+
+<div>
+    <div class="mb-4">
+        <!-- Pole name -->
+        <label class="form-label">Imię i nazwisko</label>
+        <input class="form-control" type="text" #name>
+    </div>
+    <div class="mb-4">
+        <!-- Pole email -->
+        <label class="form-label">Adres email</label>
+        <input class="form-control" type="email" #email>
+    </div>
+    <div class="mb-4">
+        <!-- Przycisk zapisz -->
+        <button [disabled]="isSendingPost" (click)="saveStudent(name.value, email.value)" class="btn btn-outline-primary">
+            <span *ngIf="isSendingPost" class="spinner-border spinner-border-sm" 
+            role="status" aria-hidden="true"></span>    
+            Zapisz
+        </button>
+    </div>
+    <div *ngIf="isValidationRequiredFailed">
+        <p class="error-text">Jedno z pól imię/nazwisko lub email nie zostało wypełnione!</p>
+    </div>
+
+    <div *ngIf="isSavingSuccess" class="alert alert-success" role="alert">
+        {{successMessage}}
+    </div>
+</div>
