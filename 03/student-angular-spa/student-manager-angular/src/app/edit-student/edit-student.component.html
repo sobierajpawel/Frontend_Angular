@@ -1,0 +1,29 @@
+<h2>Edytuj studenta</h2>
+
+<div *ngIf="student">
+  <!-- Nagłówek o id, imieniu i nazwisku studenta -->
+  <h5>Edycja studenta id: {{student.id}} , imie i nazwisko: {{student.name}}</h5>
+</div>
+
+<div class="row" *ngIf="student">
+  <div class="col">
+    <!-- Imię i nazwisko  -->
+    <label class="form-label">Imię i nazwisko studenta</label>
+    <input class="form-control" type="text" [(ngModel)]="student.name">
+  </div>
+  <div class="col">
+    <!-- Adres email -->
+    <label class="form-label">Adres email</label>
+    <input class="form-control" type="email" [(ngModel)]="student.email">
+  </div>
+  <div class="component-margin-top">
+    <!-- Przyciski do zapisu zaktualizowany danych oraz powrotu do listy -->
+    <button (click)="cancel()" style="margin-right:5px" class="btn btn-outline-secondary">Wstecz</button>
+    <button [disabled]="isSendingPut" (click)="update()" class="btn btn-outline-primary">Aktualizuj</button>
+  </div>
+
+  <div *ngIf="isUpdatingSuccess" class="alert alert-success alert-margin" role="alert">
+    Edycja studenta zakończona sukcesem!
+  </div>
+
+</div>

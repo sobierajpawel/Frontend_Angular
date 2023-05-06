@@ -1,0 +1,36 @@
+<h2>Dodaj nowego studenta</h2>
+
+<form [formGroup]="addStudentForm" (ngSubmit)="saveStudent()">
+     <!-- Input do dodawania imienia i nazwiska -->
+        <div>
+            <label class="form-label">Imię i nazwisko studenta</label>
+            <input class="form-control" type="text" formControlName="name">
+            <!-- Wyświetlać błędy walidacji dla name! -->
+            <div class="validation-message" *ngIf="f.name.errors?.['required']">
+                Imię i nazwisko studenta jest wymagane
+            </div>
+            <div class="validation-message" *ngIf="f.name.errors?.['minlength']">
+                Imię i nazwisko musi posiadać minimalną ilość znaków (3)
+            </div>
+        </div>
+     <!-- Input do dodawania emaila -->
+        <div>
+            <label class="form-label">Adres email</label>
+            <input class="form-control" type="email" formControlName="email">
+            <!-- Wyświetlać błedy walidacji dla email! -->
+            <div class="validation-message" *ngIf="f.email.errors?.['required']">
+                Email jest wymagany!
+            </div>
+            <div class="validation-message" *ngIf="f.email.errors?.['email']">
+                Pole email musi mieć strukturę email!
+            </div>
+        </div>
+
+     <!-- Przycisk zapisz -->
+     <button type="submit" class="btn btn-outline-primary">Zapisz</button>
+
+</form>
+
+<div *ngIf="isSavingSuccess" class="alert alert-success" role="alert">
+    Prawidłowo wysłano studenta na serwer!
+</div>

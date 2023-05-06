@@ -1,0 +1,41 @@
+<h2>Lista studentów</h2>
+
+<div *ngIf="!isDataReady">
+  <div class="spinner-grow text-success d-flex 
+  justify-content-center center-spinner" role="status">
+    <!-- <span class="visually-hidden">Loading...</span> -->
+  </div>
+</div>
+
+<table *ngIf="isDataReady" class="table table-hover">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Imię i nazwisko</th>
+      <th>Adres e-mail</th>
+      <th>Operacje</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr [ngClass]="{'table-primary':student.id == 2,'table-success': student.id > 8}" 
+        *ngFor="let student of students">
+      <td>{{student.id}}</td>
+      <td>{{student.name | removeHonorific | lowercase}}</td>
+      <td>
+        <a *ngIf="student.id > 5" href="mailto:{{student.email}}">{{student.email}}</a>
+      </td>
+      <td>
+        <a routerLink="/edit-student/{{student.id}}" class="btn btn-outline-warning btn-margin-right btn-font-weight">Edytuj</a>
+        <a routerLink="/detail-student/{{student.id}}" class="btn btn-outline-info btn-margin-right btn-font-weight">Szczegóły</a>
+        <button (click)="deleteStudent(student)" class="btn btn-outline-danger btn-font-weight">Usuń</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="isStudentRemoved" class="alert alert-danger" role="alert">
+  Usunięto studenta {{ removedStudentName }}!
+</div>
+<!-- <div *ngFor="let student of students">
+  <p>{{student.name}}</p>
+</div> -->
